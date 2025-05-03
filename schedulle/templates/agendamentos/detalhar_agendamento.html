@@ -1,0 +1,9 @@
+<!-- detalhar_agendamento.html -->
+<h1>Detalhes do Agendamento</h1>
+<p><strong>Cliente:</strong> {{ agendamento.cliente.nome }}</p>
+<p><strong>Serviço:</strong> {{ agendamento.servico.nome }}</p>
+<p><strong>Data e Hora:</strong> {{ agendamento.data_hora }}</p>
+<p><strong>Status:</strong> {{ agendamento.get_status_display }}</p>
+<p><strong>Observações:</strong> {{ agendamento.observacoes }}</p>
+<a href="{% url 'editar_agendamento' agendamento.id %}">Editar</a>
+<a href="{% url 'excluir_agendamento' agendamento.id %}">Excluir</a>

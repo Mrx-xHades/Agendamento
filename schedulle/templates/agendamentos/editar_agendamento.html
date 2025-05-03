@@ -1,0 +1,7 @@
+<!-- editar_agendamento.html -->
+<h1>Editar Agendamento</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar alterações</button>
+</form>

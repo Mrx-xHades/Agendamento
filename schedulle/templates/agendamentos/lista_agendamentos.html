@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lista de Agendamentos</title>
+    <style>
+        /* Resetando margens e padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Corpo da página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Link para criar novo agendamento */
+        .create-link {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .create-link:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* Tabela de agendamentos */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        td {
+            background-color: #fff;
+            color: #555;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover td {
+            background-color: #f1f1f1;
+        }
+
+        /* Botões de ação */
+        .action-buttons a {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .action-buttons .details {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .action-buttons .details:hover {
+            background-color: #0b7dda;
+            transform: scale(1.05);
+        }
+
+        .action-buttons .edit {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        .action-buttons .edit:hover {
+            background-color: #e68900;
+            transform: scale(1.05);
+        }
+
+        .action-buttons .delete {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .action-buttons .delete:hover {
+            background-color: #e02718;
+            transform: scale(1.05);
+        }
+
+        /* Rodapé */
+        footer {
+            margin-top: auto;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Lista de Agendamentos</h1>
+    <a href="{% url 'criar_agendamento' %}" class="create-link">Criar Novo Agendamento</a>
+</header>
+
+<table>
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Serviço</th>
+            <th>Data e Hora</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for agendamento in agendamentos %}
+        <tr>
+            <td>{{ agendamento.cliente.nome }}</td>
+            <td>{{ agendamento.servico.nome }}</td>
+            <td>{{ agendamento.data_hora }}</td>
+            <td>{{ agendamento.get_status_display }}</td>
+            <td class="action-buttons">
+                <a href="{% url 'detalhar_agendamento' agendamento.id %}" class="details">Detalhes</a>
+                <a href="{% url 'editar_agendamento' agendamento.id %}" class="edit">Editar</a>
+                <a href="{% url 'excluir_agendamento' agendamento.id %}" class="delete">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<footer>
+    <p>&copy; 2025 - Todos os direitos reservados | <a href="https://www.exemplo.com">www.exemplo.com</a></p>
+</footer>
+
+</body>
+</html>
