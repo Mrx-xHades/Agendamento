@@ -18,7 +18,6 @@ class AgendamentoListView(ListView):
 
 
 # views.py
-
 def criar_agendamento(request):
     if request.method == "POST":
         form = AgendamentoForm(request.POST)
