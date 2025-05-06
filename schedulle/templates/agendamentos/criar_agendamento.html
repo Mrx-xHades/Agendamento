@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Criar Agendamento</title>
+    <title>Criar Agendamento - Barbearia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* Resetando margens e padding */
         * {
@@ -15,20 +16,22 @@
 
         /* Corpo da página */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7fc;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #fff;
             line-height: 1.6;
             padding: 20px;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
         }
 
         /* Cabeçalho */
         header {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #1f1f1f;
+            color: #d4af37;
             padding: 20px;
             text-align: center;
             border-radius: 8px;
@@ -43,19 +46,19 @@
 
         /* Formulário */
         form {
-            background-color: white;
+            background-color: #2b2b2b;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 600px;
-            margin: 0 auto;
+            width: 100%;
         }
 
         h2 {
             font-size: 1.8rem;
             margin-bottom: 20px;
             text-align: center;
-            color: #4CAF50;
+            color: #d4af37;
         }
 
         /* Estilo dos campos de formulário */
@@ -68,38 +71,49 @@
         form textarea,
         form button {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0 20px 0;
-            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 12px 0 20px 0;
+            border: 1px solid #444;
             border-radius: 8px;
             font-size: 1rem;
+            background-color: #444;
+            color: #fff;
         }
 
         form input:focus,
         form select:focus,
         form textarea:focus {
-            border-color: #4CAF50;
+            border-color: #d4af37;
             outline: none;
         }
 
         form button {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #d4af37;
+            color: #121212;
             font-size: 1.1rem;
             cursor: pointer;
             border: none;
             transition: background-color 0.3s ease, transform 0.2s ease;
+            padding: 15px;
         }
 
         form button:hover {
-            background-color: #45a049;
+            background-color: #b28d25;
             transform: scale(1.05);
+        }
+
+        /* Ícone de Agendamento */
+        .icon-agenda {
+            font-size: 48px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         /* Rodapé */
         footer {
             margin-top: auto;
-            background-color: #333;
+            background-color: #1f1f1f;
             color: white;
             text-align: center;
             padding: 15px 0;
@@ -115,30 +129,30 @@
         }
 
         footer a {
-            color: #4CAF50;
+            color: #d4af37;
             text-decoration: none;
         }
 
         footer a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Criar Agendamento</h1>
+    <h1>Agende Seu Corte</h1>
 </header>
 
 <form method="post">
     {% csrf_token %}
+    <div class="icon-agenda">📅</div>
     <h2>Preencha os detalhes abaixo</h2>
     
     <!-- Exibindo o formulário com campos -->
     {{ form.as_p }}
-
-    <button type="submit">Criar Agendamento</button>
+    
+    <button type="submit">Confirmar Agendamento</button>
 </form>
 
 <footer>
