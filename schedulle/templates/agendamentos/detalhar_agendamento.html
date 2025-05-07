@@ -1,9 +1,133 @@
-<!-- detalhar_agendamento.html -->
-<h1>Detalhes do Agendamentossssssssssssssssssssssssssss</h1>
-<p><strong>Cliente:</strong> {{ agendamento.cliente.nome }}</p>
-<p><strong>Serviço:</strong> {{ agendamento.servico.nome }}</p>
-<p><strong>Data e Hora:</strong> {{ agendamento.data_hora }}</p>
-<p><strong>Status:</strong> {{ agendamento.get_status_display }}</p>
-<p><strong>Observações:</strong> {{ agendamento.observacoes }}</p>
-<a href="{% url 'editar_agendamento' agendamento.id %}">Editar</a>
-<a href="{% url 'excluir_agendamento' agendamento.id %}">Excluir</a>
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Agendamento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #d4af37;
+        }
+
+        .details-container {
+            background-color: #1f1f1f;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .details-container p {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .details-container strong {
+            color: #d4af37;
+        }
+
+        .actions {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .btn-action {
+            flex: 1;
+            text-align: center;
+            background-color: #d4af37;
+            color: #121212;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-action:hover {
+            background-color: #b28d25;
+            transform: scale(1.02);
+        }
+
+        footer {
+            margin-top: 40px;
+            background-color: #1f1f1f;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Detalhes do Agendamento</h1>
+</header>
+
+<div class="details-container">
+    <p><strong>Cliente:</strong> {{ agendamento.cliente.nome }}</p>
+    <p><strong>Serviço:</strong> {{ agendamento.servico.nome }}</p>
+    <p><strong>Data e Hora:</strong> {{ agendamento.data_hora }}</p>
+    <p><strong>Status:</strong> {{ agendamento.get_status_display }}</p>
+    <p><strong>Observações:</strong> {{ agendamento.observacoes }}</p>
+
+    <div class="actions">
+        <a href="{% url 'editar_agendamento' agendamento.id %}" class="btn-action">Editar</a>
+        <a href="{% url 'excluir_agendamento' agendamento.id %}" class="btn-action">Excluir</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 - Todos os direitos reservados | <a href="https://www.exemplo.com">www.exemplo.com</a></p>
+</footer>
+
+</body>
+</html>
+{% endblock %}
