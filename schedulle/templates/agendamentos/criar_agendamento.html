@@ -1,145 +1,156 @@
+{% block content %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Criar Agendamento</title>
+    <title>Agendamento - Barbearia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Resetando margens e padding */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Corpo da página */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7fc;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            align-items: center;
+            padding: 30px 15px;
         }
 
-        /* Cabeçalho */
         header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
+            background-color: #1f1f1f;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
             text-align: center;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
         }
 
         header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+            font-size: 32px;
+            font-weight: 600;
+            color: #d4af37;
         }
 
-        /* Formulário */
-        form {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .form-container {
+            background-color: #1f1f1f;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            width: 100%;
             max-width: 600px;
-            margin: 0 auto;
+        }
+
+        .icon-agenda {
+            font-size: 50px;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
             text-align: center;
-            color: #4CAF50;
+            color: #d4af37;
+            margin-bottom: 25px;
+            font-size: 24px;
         }
 
-        /* Estilo dos campos de formulário */
         form p {
             margin-bottom: 15px;
         }
 
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ccc;
+            font-size: 14px;
+        }
+
         form input,
         form select,
-        form textarea,
-        form button {
+        form textarea {
             width: 100%;
             padding: 12px;
-            margin: 8px 0 20px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #2d2d2d;
+            color: #fff;
+            font-size: 16px;
         }
 
         form input:focus,
         form select:focus,
         form textarea:focus {
-            border-color: #4CAF50;
             outline: none;
+            border: 1px solid #d4af37;
         }
 
-        form button {
-            background-color: #4CAF50;
-            color: white;
-            font-size: 1.1rem;
-            cursor: pointer;
+        .btn-barber {
+            width: 100%;
+            padding: 12px;
+            background-color: #d4af37;
+            color: #121212;
             border: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
-        form button:hover {
-            background-color: #45a049;
-            transform: scale(1.05);
+        .btn-barber:hover {
+            background-color: #b28d25;
+            transform: scale(1.02);
         }
 
-        /* Rodapé */
+        .btn-barber:active {
+            transform: scale(0.98);
+        }
+
         footer {
-            margin-top: auto;
-            background-color: #333;
+            margin-top: 40px;
+            background-color: #1f1f1f;
             color: white;
             text-align: center;
-            padding: 15px 0;
-            border-radius: 8px;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-            bottom: 0;
+            padding: 15px 20px;
+            border-radius: 10px;
             width: 100%;
-        }
-
-        footer p {
-            font-size: 1rem;
+            max-width: 600px;
+            font-size: 14px;
         }
 
         footer a {
-            color: #4CAF50;
+            color: #d4af37;
             text-decoration: none;
         }
 
         footer a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Criar Agendamento</h1>
+    <h1>AGENDE</h1>
 </header>
 
-<form method="post">
-    {% csrf_token %}
+<div class="form-container">
+    <div class="icon-agenda">📅</div>
     <h2>Preencha os detalhes abaixo</h2>
-    
-    <!-- Exibindo o formulário com campos -->
-    {{ form.as_p }}
-
-    <button type="submit">Criar Agendamento</button>
-</form>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-barber">Confirmar Agendamento</button>
+    </form>
+</div>
 
 <footer>
     <p>&copy; 2025 - Todos os direitos reservados | <a href="https://www.exemplo.com">www.exemplo.com</a></p>
@@ -147,3 +158,4 @@
 
 </body>
 </html>
+{% endblock %}

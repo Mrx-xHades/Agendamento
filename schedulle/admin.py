@@ -1,5 +1,10 @@
 from django.contrib import admin
-from schedulle.models import Cliente, Servico
+from schedulle.models import Cliente, Servico, Barbeiro
+
+
+class barbeiroAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'telefone', 'email' )
+    search_fields = ('nome', )
 
 
 class clienteAdmin(admin.ModelAdmin):
@@ -13,6 +18,6 @@ class servicoAdmin(admin.ModelAdmin):
 
 
 
-
+admin.site.register(Barbeiro, barbeiroAdmin)
 admin.site.register(Cliente, clienteAdmin)
 admin.site.register(Servico, servicoAdmin)

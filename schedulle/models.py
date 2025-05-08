@@ -2,6 +2,14 @@ from django.db import models
 from django.utils import timezone
 
 # Cliente do sistema de agendamentos
+class Barbeiro(models.Model):
+    nome = models.CharField(max_length=100)
+    telefone = models.CharField(max_length=15)
+    email = models.EmailField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.nome
+
 class Cliente(models.Model):
     nome = models.CharField(max_length=100)
     telefone = models.CharField(max_length=15)
@@ -28,7 +36,8 @@ class StatusAgendamento(models.TextChoices):
 
 # Agendamento de cabeleireiro
 class Agendamento(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    barbeiro = models.ForeignKey(Barbeiro, on_delete=models.CASCADE, related_name='agendamentos_como_barbeiro', null=True)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='agendamentos_como_cliente')
     servico = models.ForeignKey(Servico, on_delete=models.SET_NULL, null=True)
     data_hora = models.DateTimeField()
     status = models.CharField(
@@ -41,7 +50,7 @@ class Agendamento(models.Model):
     atualizado_em = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Agendamento {self.id} - {self.cliente.nome} - {self.servico.nome} - {self.data_hora}"
+        return f"Agendamento {self.id} - {self.Barbeiro.nome} - {self.cliente.nome} - {self.servico.nome} - {self.data_hora}"
 
     def is_agendamento_futuro(self):
         return self.data_hora > timezone.now()
